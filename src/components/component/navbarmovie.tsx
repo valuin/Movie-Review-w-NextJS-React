@@ -21,30 +21,38 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export function navbarmovie() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const toggleSearch = () => setIsSearchOpen(!isSearchOpen);
+  const searchInputRef = useRef(null);
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+    if (!isSearchOpen) {
+      setTimeout(() => {
+        searchInputRef.current.focus();
+      }, 100);
+    }
+  };
   return (
     <header className="absolute w-full flex items-center justify-between h-20 px-4 md:px-6 border-b-0 bg-gradient-to-b from-neutral-950">
       <div className="flex items-center gap-14">
         <Link
           className="flex items-center gap-2 ml-1 text-lg font-semibold"
-          href="#"
+          href="/"
         >
           <FilmIcon className="w-8 h-8" />
           <span className="hidden xs:block">Ticketstubs</span>
         </Link>
         <nav className="hidden md:flex items-center gap-6 text-sm font-medium lg:text-lg">
-          <Link className="hover:underline" href="#">
+          <Link className="hover:underline" href="/top-rated">
             Top Rated
           </Link>
-          <Link className="hover:underline" href="#">
+          <Link className="hover:underline" href="/popular">
             Popular
           </Link>
-          <Link className="hover:underline" href="#">
+          <Link className="hover:underline" href="/genres">
             Genres
           </Link>
           <Link className="hover:underline" href="#">
@@ -71,6 +79,7 @@ export function navbarmovie() {
           onBlur={toggleSearch}
         >
           <Input
+            ref={searchInputRef}
             type="text"
             className="flex flex-wrap rounded-full w-72 justify-center items-center"
             placeholder="Search..."
@@ -81,20 +90,22 @@ export function navbarmovie() {
             Search
           </button>
         </form>
-        <Button className="rounded-full" size="icon" variant="ghost">
-          <img
-            alt="Avatar"
-            className="rounded-full"
-            height="32"
-            src="./placeholder-user.jpg"
-            style={{
-              aspectRatio: "32/32",
-              objectFit: "cover",
-            }}
-            width="32"
-          />
-          <span className="sr-only">User Menu</span>
-        </Button>
+        <Link href="https://youtube.com/shorts/b51qln8197o?si=DFgkbQGYi06X2Ezy" target="_blank">
+            <Button className="rounded-full" size="icon" variant="ghost">
+              <img
+                alt="Avatar"
+                className="rounded-full"
+                height="32"
+                src="./placeholder-user.jpg"
+                style={{
+                  aspectRatio: "32/32",
+                  objectFit: "cover",
+                }}
+                width="32"
+              />
+              <span className="sr-only">User Menu</span>
+            </Button>
+        </Link>
       </div>
     </header>
   );
