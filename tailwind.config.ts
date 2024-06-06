@@ -8,13 +8,23 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      width: {
+        250: "250px",
+      },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      screens: {
+        xs: "485px",
+        iphone: "375px",
+      },
+      transitionProperty: {
+        width: "width",
+      },
     },
   },
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
 export default config;
