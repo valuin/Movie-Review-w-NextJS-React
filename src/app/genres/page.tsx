@@ -48,17 +48,24 @@ export default function Genres() {
               <div className="flex flex-row gap-6 ml-1 overflow-y-visible">
                 {isLoading
                   ? Array(8).fill(<MovieCardSkeleton />)
-                  : movies[index] &&
-                    Array.isArray(movies[index]) &&
-                    movies[index].map((movie) => (
-                      <MovieCard
-                        key={movie.index}
-                        id={movie.id}
-                        title={movie.title}
-                        posterUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                        isLoading={isLoading}
-                      />
-                    ))}
+                  : (() => {
+                      if (movies[index] && Array.isArray(movies[index])) {
+                        let movieElements = [];
+                        for (let i = 0; i < movies[index].length; i++) {
+                          let movie = movies[index][i];
+                          movieElements.push(
+                            <MovieCard
+                              key={i}
+                              id={movie.id}
+                              title={movie.title}
+                              posterUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                              isLoading={isLoading}
+                            />
+                          );
+                        }
+                        return movieElements;
+                      }
+                    })()}
               </div>
             </div>
           ))}
