@@ -27,21 +27,22 @@ import { useRouter } from "next/navigation";
 export function Navbarmovie() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const searchInputRef = useRef(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
     if (!isSearchOpen) {
       setTimeout(() => {
-        searchInputRef.current.focus();
+        if (searchInputRef.current) {
+          searchInputRef.current.focus();
+        }
       }, 100);
     }
   };
 
-
   // Inside your component
   const router = useRouter();
 
-  const handleSearch = (e) => {
+  const handleSearch = (e:any) => {
     e.preventDefault();
     // Navigate to a new page with search term as a URL parameter
     router.push(`/search/${searchTerm}`);
@@ -127,7 +128,7 @@ export function Navbarmovie() {
   );
 }
 
-function FilmIcon(props) {
+function FilmIcon(props: any) {
   return (
     <svg
       {...props}
@@ -153,7 +154,7 @@ function FilmIcon(props) {
   );
 }
 
-function SearchIcon(props) {
+function SearchIcon(props: any) {
   return (
     <svg
       {...props}

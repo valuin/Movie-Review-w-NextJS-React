@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 
+type MovieDetails = {
+  title: string;
+  overview: string;
+  poster_path: string;
+};
+
 const useMovieDetails = (id:number) => {
-  const [movieDetails, setMovieDetails] = useState(null);
+  const [movieDetails, setMovieDetails] = useState<MovieDetails | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
     const fetchMovieDetails = async () => {
@@ -16,7 +22,7 @@ const useMovieDetails = (id:number) => {
         setMovieDetails(data);
         setLoading(false);
       } catch (error) {
-        setError(error);
+        setError(error as Error);
         setLoading(false);
       }
     };
