@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import useGenres from "@/hooks/useGenres";
 import useByGenre from "@/hooks/useByGenre";
 import MovieList from "@/components/component/movielist";
@@ -8,13 +8,23 @@ import Navbar from "@/components/component/navbarmovie";
 
 import { map } from "zod";
 import Footer from "@/components/component/footer";
+import MovieCardSkeleton from "@/components/skeleton/mvCardSkeleton";
 
 export default function Genres() {
   const genres = useGenres();
   const limitedGenres = genres.slice(0, 8); // Limit the genres to 8
   const genreIds = limitedGenres.map((genre) => genre.id);
   const movies = useByGenre(genreIds);
+  const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    if (movies.length > 0) {
+      // Delay the setting of isLoading to false by 1 second
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 200);
+    }
+  }, [movies]);
 
   return (
     <div className="flex flex-col overflow-x-hidden">
@@ -28,7 +38,7 @@ export default function Genres() {
             <div key={index}>
               <p className="text-2xl text-neutral-50 mb-5 ml-2">{genre.name}</p>
               <div className="flex flex-row gap-6 ml-1 overflow-y-visible">
-                {movies[index] &&
+                {isLoading ? Array(8).fill(<MovieCardSkeleton />) : movies[index] &&
                   movies[index].map((movie, index) => (
                     <MovieCard
                       key={movie.index}

@@ -1,9 +1,10 @@
-"use client";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import Skeleton from 'react-loading-skeleton'; // You need to install this package
 
-const MovieCard = ({ id, title, posterUrl }) => {
+const MovieCard = ({ id, title, posterUrl, isLoading }) => {
   const [isHovered, setIsHovered] = useState(false);
+
   return (
     <Link href={`/movies/${id}`}>
         <div
@@ -11,21 +12,29 @@ const MovieCard = ({ id, title, posterUrl }) => {
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
-          <img
-            className={`rounded-xl aspect-[11/16] max-w-60 relative object-cover ${
-              isHovered ? "scale-105" : ""
-            } transition duration-100`}
-            src={posterUrl}
-            alt="Movie Poster"
-          />
+          {isLoading ? (
+            <Skeleton height={250} width={175} />
+          ) : (
+            <img
+              className={`rounded-xl aspect-[11/16] max-w-60 relative object-cover ${
+                isHovered ? "scale-105" : ""
+              } transition duration-100`}
+              src={posterUrl}
+              alt="Movie Poster"
+            />
+          )}
           <div className="w-250 flex flex-row justify-center items-center h-20">
-            <div
-              className={`font-bold text-xl mt-5 overflow-ellipsis ${
-                isHovered ? "text-red-500" : ""
-              }`}
-            >
-              {title}
-            </div>
+            {isLoading ? (
+              <Skeleton width={200} height={30} />
+            ) : (
+              <div
+                className={`font-bold text-xl mt-5 overflow-ellipsis ${
+                  isHovered ? "text-red-500" : ""
+                }`}
+              >
+                {title}
+              </div>
+            )}
           </div>
         </div>
     </Link>

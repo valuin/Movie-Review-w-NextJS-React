@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
 import { useState, useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export function navbarmovie() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -35,6 +36,17 @@ export function navbarmovie() {
       }, 100);
     }
   };
+
+
+  // Inside your component
+  const router = useRouter();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    // Navigate to a new page with search term as a URL parameter
+    router.push(`/search/${searchTerm}`);
+  };
+
   return (
     <header className="absolute w-full flex items-center justify-between h-20 px-4 md:px-6 border-b-0 bg-gradient-to-b from-neutral-950">
       <div className="flex items-center gap-14">
@@ -77,6 +89,7 @@ export function navbarmovie() {
             isSearchOpen ? "w-72" : "w-0"
           }`}
           onBlur={toggleSearch}
+          onSubmit={handleSearch}
         >
           <Input
             ref={searchInputRef}
@@ -90,21 +103,24 @@ export function navbarmovie() {
             Search
           </button>
         </form>
-        <Link href="https://youtube.com/shorts/b51qln8197o?si=DFgkbQGYi06X2Ezy" target="_blank">
-            <Button className="rounded-full" size="icon" variant="ghost">
-              <img
-                alt="Avatar"
-                className="rounded-full"
-                height="32"
-                src="./placeholder-user.jpg"
-                style={{
-                  aspectRatio: "32/32",
-                  objectFit: "cover",
-                }}
-                width="32"
-              />
-              <span className="sr-only">User Menu</span>
-            </Button>
+        <Link
+          href="https://youtube.com/shorts/b51qln8197o?si=DFgkbQGYi06X2Ezy"
+          target="_blank"
+        >
+          <Button className="rounded-full" size="icon" variant="ghost">
+            <img
+              alt="Avatar"
+              className="rounded-full"
+              height="32"
+              src="./placeholder-user.jpg"
+              style={{
+                aspectRatio: "32/32",
+                objectFit: "cover",
+              }}
+              width="32"
+            />
+            <span className="sr-only">User Menu</span>
+          </Button>
         </Link>
       </div>
     </header>

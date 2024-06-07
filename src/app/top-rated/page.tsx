@@ -3,6 +3,7 @@ import React from "react";
 import MovieList from "@/components/component/movielist";
 import Navbar from "@/components/component/navbarmovie";
 import useTopRated from "@/hooks/useTopRated";
+import Footer from "@/components/component/footer";
 
 export default function TopRated() {
   return (
@@ -17,6 +18,7 @@ export default function TopRated() {
           <MovieList useMoviesHook={useTopRated} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
