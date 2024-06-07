@@ -38,7 +38,9 @@ export default function MovieDetail({ params }: { params: Params }) {
           alt={movieDetails.title}
         />
         <div className="flex flex-col mx-14">
-          <h1 className="text-7xl font-semibold mb-6">{movieDetails.title}</h1>
+          <h1 className="text-5xl font-semibold mb-6">{movieDetails.title}</h1>
+          <h2 className="text-xl font-medium mb-4">{new Date(movieDetails.release_date).getFullYear()}</h2>
+          <p className="text-lg font-medium mb-3">{movieDetails.genres.map((genre) => genre.name).join(", ")}</p>
           <p>{movieDetails.overview}</p>
         </div>
       </div>

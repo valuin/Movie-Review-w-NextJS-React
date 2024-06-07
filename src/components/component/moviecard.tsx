@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import Skeleton from 'react-loading-skeleton'; // You need to install this package
+import Skeleton from 'react-loading-skeleton';
 
 type MovieCardProps = {
   id: number;

@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 type MovieDetails = {
   title: string;
   overview: string;
+  release_date: string;
+  genres: { id: number; name: string }[];
   poster_path: string;
 };
 
