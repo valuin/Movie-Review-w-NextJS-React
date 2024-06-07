@@ -7,6 +7,7 @@ import Navbar from "@/components/component/navbarmovie";
 import Footer from "@/components/component/footer";
 import MovieCardSkeleton from "@/components/skeleton/mvCardSkeleton";
 
+
 type Genre = {
   id: number;
   name: string;

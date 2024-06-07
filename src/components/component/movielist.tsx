@@ -8,14 +8,14 @@ const MovieCard = dynamic(() => import("@/components/component/moviecard"), {
   ssr: false,
 });
 
-type Movie = {
+type MovieListCards = {
   id: number;
   title: string;
   poster_path: string;
 };
 
 type MovieListProps = {
-  useMoviesHook: () => Movie[]; // Assuming Movie is a type you've defined elsewhere
+  useMoviesHook: () => MovieListCards[]; // Assuming Movie is a type you've defined elsewhere
 };
 
 const MovieList: React.FC<MovieListProps> = ({ useMoviesHook }) => {
