@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Skeleton from 'react-loading-skeleton';
+import Image from "next/image";
 
 type MovieCardProps = {
   id: number;

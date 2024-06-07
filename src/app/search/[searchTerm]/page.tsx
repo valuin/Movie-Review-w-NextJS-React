@@ -3,7 +3,7 @@ import React from "react";
 import MovieCard from "@/components/component/moviecard";
 import Navbar from "@/components/component/navbarmovie";
 import Footer from "@/components/component/footer";
-import useMovieSearch from "@/hooks/useMovieSearch";
+import UseMovieSearch from "@/hooks/useMovieSearch";
 import MovieCardSkeleton from "@/components/skeleton/mvCardSkeleton";
 
 interface Movie {
@@ -17,7 +17,7 @@ interface Param {
 
 export default function searchResults({ params }: { params: Param }) {
   const { searchTerm } = params;
-  const { loading, movies } = useMovieSearch(searchTerm);
+  const { loading, movies } = UseMovieSearch(searchTerm);
 
   if (loading) {
     return (
