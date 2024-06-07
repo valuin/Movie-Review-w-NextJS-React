@@ -46,16 +46,19 @@ export default function Genres() {
             <div key={index}>
               <p className="text-2xl text-neutral-50 mb-5 ml-2">{genre.name}</p>
               <div className="flex flex-row gap-6 ml-1 overflow-y-visible">
-                {isLoading ? Array(8).fill(<MovieCardSkeleton />) : movies[index] &&
-                  movies[index].map((movie, index) => (
-                    <MovieCard
-                      key={movie.index}
-                      id={movie.id}
-                      title={movie.title}
-                      posterUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                      isLoading={isLoading}
-                    />
-                  ))}
+                {isLoading
+                  ? Array(8).fill(<MovieCardSkeleton />)
+                  : movies[index] &&
+                    Array.isArray(movies[index]) &&
+                    movies[index].map((movie, index) => (
+                      <MovieCard
+                        key={movie.index}
+                        id={movie.id}
+                        title={movie.title}
+                        posterUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                        isLoading={isLoading}
+                      />
+                    ))}
               </div>
             </div>
           ))}
