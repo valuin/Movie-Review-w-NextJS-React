@@ -23,7 +23,7 @@ export default function searchResults({ params }: { params: Param }) {
     return (
       <div className="flex flex-col overflow-x-hidden bg-neutral-950">
         <Navbar />
-        <div className="flex flex-wrap justify-center p-5 mt-36 ml-6">
+        <div className="grid grid-cols-1 gap-4 justify-center items-center md:grid-cols-2 xl:grid-cols-4 p-5 mt-36 ml-6">
           {Array(12)
             .fill(0)
             .map((_, index) => (
@@ -38,14 +38,14 @@ export default function searchResults({ params }: { params: Param }) {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col bg-neutral-950">
       <Navbar />
 
-      <div className="mt-28 w-full h-full flex flex-col justify-end">
+      <div className="mx-auto mt-28 w-full h-full flex flex-col justify-end">
         <h2 className="text-2xl ml-20 mb-5 font-semibold text-neutral-50">
-          Search results for: {searchTerm}
+          {`Search results for: ${searchTerm.replace(/%20/g, " ")}`}
         </h2>
-        <div className="grid grid-cols-4 gap-4 p-3">
+        <div className="grid grid-cols-1 gap-4 justify-center items-center mt-4 ml-6 md:grid-cols-2 xl:grid-cols-4">
           {loading ? (
             <div>Loading...</div>
           ) : (

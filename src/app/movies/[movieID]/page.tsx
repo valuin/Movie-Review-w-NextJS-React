@@ -16,7 +16,7 @@ export default function MovieDetail({ params }: { params: Params }) {
     return (
       <div className="flex flex-col overflow-x-hidden bg-neutral-950">
         <Navbar />
-        <div className="flex justify-start">
+        <div className="flex justify-start ml-4">
           <DetailSkeleton />
         </div>
         <Footer />
@@ -33,7 +33,7 @@ export default function MovieDetail({ params }: { params: Params }) {
       <Navbar />
       <div className="mt-28 w-full h-full flex flex-row justify-end">
         <img
-          className="rounded-xl aspect-[11/16] max-w-96 ml-12 object-cover"
+          className="rounded-xl aspect-[11/16] max-w-96 ml-16 object-cover"
           src={`https://image.tmdb.org/t/p/w500${movieDetails.poster_path}`}
           alt={movieDetails.title}
         />
