@@ -50,7 +50,7 @@ export default function Genres() {
                   ? Array(8).fill(<MovieCardSkeleton />)
                   : movies[index] &&
                     Array.isArray(movies[index]) &&
-                    movies[index].map((movie, index) => (
+                    movies[index].map((movie) => (
                       <MovieCard
                         key={movie.index}
                         id={movie.id}
