@@ -16,13 +16,14 @@ type Movie = {
   id: number;
   title: string;
   poster_path: string;
+  genre_ids: number[];
 };
 
 export default function Genres() {
   const genres: Genre[] = useGenres();
   const limitedGenres = genres.slice(0, 8); // Limit the genres to 8
   const genreIds = limitedGenres.map((genre) => genre.id);
-  const movies: Movie[] = useByGenre(genreIds);
+  let movies: Movie[] = useByGenre(genreIds);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -51,17 +52,25 @@ export default function Genres() {
                   : (() => {
                       if (movies && Array.isArray(movies)) {
                         let movieElements = [];
+                        let addedMovieIds = new Set(); // Keep track of added movie IDs
                         for (let i = 0; i < movies.length; i++) {
                           let movie = movies[i];
-                          movieElements.push(
-                            <MovieCard
-                              key={i}
-                              id={movie.id}
-                              title={movie.title}
-                              posterUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                              isLoading={false}
-                            />
-                          );
+                          // Check if the movie's genre matches the current genre and it hasn't been added yet
+                          if (
+                            movie.genre_ids.includes(genre.id) &&
+                            !addedMovieIds.has(movie.id)
+                          ) {
+                            movieElements.push(
+                              <MovieCard
+                                key={i}
+                                id={movie.id}
+                                title={movie.title}
+                                posterUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                isLoading={false}
+                              />
+                            );
+                            addedMovieIds.add(movie.id); // Mark the movie as added
+                          }
                         }
                         return movieElements;
                       }

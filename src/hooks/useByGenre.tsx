@@ -20,7 +20,7 @@ function useByGenre(genreIds: number[]): Movie[] {
     };
 
     fetchMovies();
-  }, [genreIds]);
+  }, [JSON.stringify(genreIds)]);
 
   return movies;
 }

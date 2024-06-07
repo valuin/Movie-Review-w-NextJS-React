@@ -3,6 +3,7 @@ import React from "react";
 import MovieList from "@/components/component/movielist";
 import Navbar from "@/components/component/navbarmovie";
 import usePopular from "@/hooks/usePopular";
+import Footer from "@/components/component/footer";
 
 export default function popular() {
   return (
@@ -17,6 +18,7 @@ export default function popular() {
           <MovieList useMoviesHook={usePopular} />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }

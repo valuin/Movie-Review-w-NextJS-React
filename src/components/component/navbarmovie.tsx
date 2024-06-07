@@ -20,7 +20,7 @@ To read more about using these font, please visit the Next.js documentation:
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
+import Image from "next/image";
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 
@@ -109,11 +109,11 @@ export function Navbarmovie() {
           target="_blank"
         >
           <Button className="rounded-full" size="icon" variant="ghost">
-            <img
+            <Image
               alt="Avatar"
               className="rounded-full"
               height="32"
-              src="./placeholder-user.jpg"
+              src="/placeholder-user.jpg"
               style={{
                 aspectRatio: "32/32",
                 objectFit: "cover",
