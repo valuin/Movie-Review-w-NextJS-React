@@ -2,7 +2,14 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Skeleton from 'react-loading-skeleton'; // You need to install this package
 
-const MovieCard = ({ id, title, posterUrl, isLoading }) => {
+type MovieCardProps = {
+  id: number;
+  title: string;
+  posterUrl: string | null;
+  isLoading: boolean;
+};
+
+const MovieCard: React.FC<MovieCardProps> = ({ id, title, posterUrl, isLoading }) => {
   const [isHovered, setIsHovered] = useState(false);
 
   return (
@@ -19,7 +26,7 @@ const MovieCard = ({ id, title, posterUrl, isLoading }) => {
               className={`rounded-xl aspect-[11/16] max-w-60 relative object-cover ${
                 isHovered ? "scale-105" : ""
               } transition duration-100`}
-              src={posterUrl}
+              src={posterUrl ? posterUrl : "/oppPoster.jpg"}
               alt="Movie Poster"
             />
           )}

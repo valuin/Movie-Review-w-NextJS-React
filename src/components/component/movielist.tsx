@@ -8,7 +8,17 @@ const MovieCard = dynamic(() => import("@/components/component/moviecard"), {
   ssr: false,
 });
 
-const MovieList = ({ useMoviesHook }) => {
+type Movie = {
+  id: number;
+  title: string;
+  poster_path: string;
+};
+
+type MovieListProps = {
+  useMoviesHook: () => Movie[]; // Assuming Movie is a type you've defined elsewhere
+};
+
+const MovieList: React.FC<MovieListProps> = ({ useMoviesHook }) => {
   const movies = useMoviesHook();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -32,6 +42,7 @@ const MovieList = ({ useMoviesHook }) => {
                   ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
                   : null
               }
+              isLoading={isLoading}
             />
           ))}
     </div>

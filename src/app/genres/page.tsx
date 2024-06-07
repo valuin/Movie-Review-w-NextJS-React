@@ -59,7 +59,7 @@ export default function Genres() {
                               id={movie.id}
                               title={movie.title}
                               posterUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                              isLoading={isLoading}
+                              isLoading={false}
                             />
                           );
                         }

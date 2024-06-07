@@ -1,26 +1,35 @@
 import { useState, useEffect } from "react";
 
-function useByGenre(genreIds:any) {
-  const [movies, setMovies] = useState([]);
+interface Movie {
+  id: number;
+  title: string;
+  poster_path: string;
+}
+
+function useByGenre(genreIds: number[]): Movie[] {
+  const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {
     const fetchMovies = async () => {
-      const allMovies = [];
+      const allMovies: Movie[] = [];
       for (const id of genreIds) {
-        const response = await fetchMoviesByGenre(id);
-        allMovies.push(response);
+        const response: Movie[] = await fetchMoviesByGenre(id);
+        allMovies.push(...response);
       }
       setMovies(allMovies);
-    }
+    };
 
     fetchMovies();
   }, [genreIds]);
 
   return movies;
 }
-async function fetchMoviesByGenre(genreId) {
+
+async function fetchMoviesByGenre(genreId: number): Promise<Movie[]> {
   const apiKey = process.env.NEXT_PUBLIC_MOVIE_DB_API_KEY; // replace with your actual API key
-  const response = await fetch(`https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`);
+  const response = await fetch(
+    `https://api.themoviedb.org/3/discover/movie?api_key=${apiKey}&with_genres=${genreId}`
+  );
 
   if (!response.ok) {
     throw new Error(`HTTP error! status: ${response.status}`);
