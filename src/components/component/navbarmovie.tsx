@@ -24,7 +24,7 @@ import { Input } from "@/components/ui/input";
 import { useState, useRef } from "react";
 import { useRouter } from "next/navigation";
 
-export function navbarmovie() {
+export function Navbarmovie() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const searchInputRef = useRef(null);
@@ -174,4 +174,4 @@ function SearchIcon(props) {
   );
 }
 
-export default navbarmovie;
+export default Navbarmovie;
