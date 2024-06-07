@@ -7,11 +7,22 @@ import Navbar from "@/components/component/navbarmovie";
 import Footer from "@/components/component/footer";
 import MovieCardSkeleton from "@/components/skeleton/mvCardSkeleton";
 
+type Genre = {
+  id: number;
+  name: string;
+};
+
+type Movie = {
+  id: number;
+  title: string;
+  poster_path: string;
+};
+
 export default function Genres() {
-  const genres = useGenres();
+  const genres: Genre[] = useGenres();
   const limitedGenres = genres.slice(0, 8); // Limit the genres to 8
   const genreIds = limitedGenres.map((genre) => genre.id);
-  const movies = useByGenre(genreIds);
+  const movies: Movie[] = useByGenre(genreIds);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -42,6 +53,7 @@ export default function Genres() {
                       id={movie.id}
                       title={movie.title}
                       posterUrl={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                      isLoading={isLoading}
                     />
                   ))}
               </div>
