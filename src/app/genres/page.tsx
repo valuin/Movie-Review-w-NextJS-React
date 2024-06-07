@@ -49,10 +49,10 @@ export default function Genres() {
                 {isLoading
                   ? Array(8).fill(<MovieCardSkeleton />)
                   : (() => {
-                      if (movies[index] && Array.isArray(movies[index])) {
+                      if (movies && Array.isArray(movies)) {
                         let movieElements = [];
-                        for (let i = 0; i < movies[index].length; i++) {
-                          let movie = movies[index][i];
+                        for (let i = 0; i < movies.length; i++) {
+                          let movie = movies[i];
                           movieElements.push(
                             <MovieCard
                               key={i}
