@@ -2,11 +2,8 @@
 import React, { useState, useEffect } from "react";
 import useGenres from "@/hooks/useGenres";
 import useByGenre from "@/hooks/useByGenre";
-import MovieList from "@/components/component/movielist";
 import MovieCard from "@/components/component/moviecard";
 import Navbar from "@/components/component/navbarmovie";
-
-import { map } from "zod";
 import Footer from "@/components/component/footer";
 import MovieCardSkeleton from "@/components/skeleton/mvCardSkeleton";
 
